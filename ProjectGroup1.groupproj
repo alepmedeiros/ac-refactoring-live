@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{CD9C02CD-1E35-4C1E-9E8D-04443220DA2F}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="MonolitoFinanceiro.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="exemplomapper\Project1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="test\TestMonolitoFinanceiro.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="MonolitoFinanceiro">
+        <MSBuild Projects="MonolitoFinanceiro.dproj"/>
+    </Target>
+    <Target Name="MonolitoFinanceiro:Clean">
+        <MSBuild Projects="MonolitoFinanceiro.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MonolitoFinanceiro:Make">
+        <MSBuild Projects="MonolitoFinanceiro.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project1">
+        <MSBuild Projects="exemplomapper\Project1.dproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="exemplomapper\Project1.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="exemplomapper\Project1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestMonolitoFinanceiro">
+        <MSBuild Projects="test\TestMonolitoFinanceiro.dproj"/>
+    </Target>
+    <Target Name="TestMonolitoFinanceiro:Clean">
+        <MSBuild Projects="test\TestMonolitoFinanceiro.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestMonolitoFinanceiro:Make">
+        <MSBuild Projects="test\TestMonolitoFinanceiro.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="MonolitoFinanceiro;Project1;TestMonolitoFinanceiro"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="MonolitoFinanceiro:Clean;Project1:Clean;TestMonolitoFinanceiro:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="MonolitoFinanceiro:Make;Project1:Make;TestMonolitoFinanceiro:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
